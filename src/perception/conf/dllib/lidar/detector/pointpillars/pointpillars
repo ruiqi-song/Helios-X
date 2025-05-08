@@ -1,0 +1,33 @@
+num_classes: 1
+reproduce_result_mode_: true
+score_threshold: 0.5
+nms_overlap_threshold: 0.5
+pfe_onnx_file: /home/ricky/waytous_server/src/perception/conf/dllib/lidar/detector/pointpillars/pfe.onnx
+rpn_onnx_file: /home/ricky/waytous_server/src/perception/conf/dllib/lidar/detector/pointpillars/rpn_6.onnx
+max_num_pillars: 12000
+max_num_points_per_pillar: 100
+pfe_output_size: 12000 * 64
+grid_x_size: 432
+grid_y_size: 496
+grid_z_size: 1
+rpn_input_size: 64 * 432 * 496
+num_anchor_factor: 0.5
+num_anchor_r_inds: 2
+pillar_x_size: 0.16
+pillar_y_size: 0.16
+pillar_z_size: 4.0
+min_x_range: 0
+min_y_range: -39.68
+min_z_range: -3.0
+max_x_range: 69.12
+max_y_range: 39.68
+max_z_range: 1
+batch_size: 1
+num_inds_for_scan: 512
+num_threads: 64
+sensor_height: 1.73
+anchor_dx_size: 1.6
+anchor_dy_size: 3.9
+anchor_dz_size: 1.56
+num_box_corners: 4
+num_output_box_feature: 7

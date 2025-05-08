@@ -1,0 +1,10 @@
+model_name: "yolov5-panet-spp"
+ignore_thresh: 0.1
+max_output_bbox_count: 1000
+class_num: 9
+input_h: 640
+input_w: 640
+nms_thresh: 0.4
+conf_thresh: 0.5
+
+

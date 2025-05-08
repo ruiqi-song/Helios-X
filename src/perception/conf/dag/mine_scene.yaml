@@ -1,0 +1,59 @@
+DAGstreaming:
+  perception:
+    camera:
+      node: CameraProcessWorkerNode
+      device_id: basler_ac1920_8mm
+      input: /pylon_camera_node0/image_raw
+      output: /camera/obstacles
+      config: conf/service/camera_process_node
+      component:
+        detector:
+          name: Yolov5
+          model: src/perception/conf/dllib/camera/detector/yolov5/yolov5-mine-v1.engine
+          config: src/perception/conf/dllib/camera/detector/yolov5/yolov5
+        tracker:
+          name: DeepSorts
+          model: src/perception/conf/dllib/camera/tracker/deepsorts/deepsort-mine.engine
+          config: src/perception/conf/dllib/camera/tracker/deepsorts/deepsorts
+    lidar:
+      node: LidarProcessWorkerNode
+      device_id: horizon_15
+      input: /livox/lidar
+      output: /lidar/obstacles
+      component:
+        detector:
+          name: pointpillars
+          model: src/perception/dllib/lidar/detector/pointpillars/pointpillars-mine.trt
+          config: src/perception/conf/dllib/lidar/detector/pointpillars/pointpillars-mine
+        tracker:
+          name: none
+          model: none
+          config:
+    radar:
+      node: RadarProcessWorkerNode
+      device_id: delphi_esr
+      input: delphi_driver
+      output: radar_obstacles
+      config: none
+    lane:
+      node: LaneSegmentWorkerNode
+      device_id:
+      input: /pylon_camera_node0/image_raw
+      output: /lane/obstacles
+      config: conf/service/camera_process_node
+      component:
+        segment:
+          name: BiSeNet
+          model: src/perception/conf/dllib/camera/segment/bisenet/bisenet-mine-v1.trt
+          config: src/perception/conf/dllib/camera/segment/bisenet/bisenet
+    fusion:
+      node: FusionProcessWorkerNode
+      input: /lidar/obstacles
+      output: /fusion/obstacles
+      component:
+        lidar: LidarProcessWorkerNode
+        camera: CameraProcessWorkerNode
+        radar: 0
+        lane: 0
+        v2x: 0
+      config:

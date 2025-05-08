@@ -1,0 +1,62 @@
+header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: vehicle_link
+object:
+  truck:
+    name: mm
+    dimension:
+      x: 12
+      y: 6
+      z: 6
+  excavator:
+    name: excavator
+    dimension:
+      x: 15
+      y: 9
+      z: 9
+  lorry:
+    name: lorry
+    dimension:
+      x: 8
+      y: 3.5
+      z: 2.5
+  auxiliary:
+    name: auxiliary
+    dimension:
+      x: 6
+      y: 3.5
+      z: 3
+  car:
+    name: car
+    dimension:
+      x: 4
+      y: 2
+      z: 1.5
+  person:
+    name: person
+    dimension:
+      x: 0.5
+      y: 0.5
+      z: 1.75
+  rock:
+    name: rock
+    dimension:
+      x: 0.3
+      y: 0.3
+      z: 0.3
+  sign:
+    name: sign
+    dimension:
+      x: 0.2
+      y: 0.5
+      z: 1
+  warning:
+    name: warning
+    dimension:
+      x: 0.3
+      y: 0.3
+      z: 0.3
+

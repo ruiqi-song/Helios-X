@@ -1,0 +1,79 @@
+DAGstreaming:
+  perception:
+    camera:
+      FrontLongCamera:
+        node: FrontLongCamera
+        device_id: basler_ac1920_8mm
+        config: conf/service/camera_process_node
+        component:
+          detector:
+            name: Yolov5
+           # model: src/perception/conf/dllib/camera/detector/yolov5/yolov5-626.engine
+            model: src/perception/conf/dllib/camera/detector/yolov5/630.engine
+            config: src/perception/conf/dllib/camera/detector/yolov5/yolov5
+          tracker:
+            name: DeepSorts
+            model: src/perception/conf/dllib/camera/tracker/deepsorts/deepsort.trt
+            config: src/perception/conf/dllib/camera/tracker/deepsorts/deepsorts
+          segment:
+            name: BiSeNet
+            #model: src/perception/conf/dllib/camera/segment/bisenet/629.trt
+            model: src/perception/conf/dllib/camera/segment/bisenet/bisenet-snow.trt
+            config: src/perception/conf/dllib/camera/segment/bisenet/bisenet
+      FrontShortCamera:
+        node: FrontShortCamera
+        device_id: basler_ac1920_16mm
+        config: conf/service/camera_process_node
+        component:
+          detector:
+            name: Yolov5
+            model: src/perception/conf/dllib/camera/detector/yolov5/new.engine
+            config: src/perception/conf/dllib/camera/detector/yolov5/yolov5
+          tracker:
+            name: DeepSorts
+            model: src/perception/conf/dllib/camera/tracker/deepsorts/deepsort.trt
+            config: src/perception/conf/dllib/camera/tracker/deepsorts/deepsorts
+    lidar:
+      Livox:
+        node: Livox
+        device_id: horizon_15
+        component:
+          detector:
+            name: pointpillars
+            model: src/perception/dllib/lidar/detector/pointpillars/pointpillars-mine.trt
+            config: src/perception/conf/dllib/lidar/detector/pointpillars/pointpillars
+          tracker:
+            name: none
+            model: none
+            config:
+      Ouster64:
+        node: Ouster64
+        device_id: ouster_64
+        component:
+          detector:
+            name: pointpillars
+            model: src/perception/dllib/lidar/detector/pointpillars/pointpillars-mine.trt
+            config: src/perception/conf/dllib/lidar/detector/pointpillars/pointpillars
+          tracker:
+            name: none
+            model: none
+            config:
+    radar:
+      node: RadarProcessWorkerNode
+      device_id: delphi_esr
+      input: delphi_driver
+      output: radar_obstacles
+      config: none
+    fusion:
+      node: FusionProcessWorkerNode
+      input: /lidar/obstacles
+      output: /fusion/obstacles
+      component:
+        lidar:
+        camera1:
+        camera2:
+        camera3:
+        radar: 0
+        lane: 0
+        v2x: 0
+      config:

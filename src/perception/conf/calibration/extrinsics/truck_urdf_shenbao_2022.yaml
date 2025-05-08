@@ -1,0 +1,84 @@
+vehicle_link:
+  header:
+    seq: 0
+    stamp:
+      secs: 0
+      nsecs: 0
+    frame_id: vehicle_link
+camera_short_link:
+  transform:
+    translation:
+      x: -0.321471942
+      y: 2.44336601
+      z: 0.60883729
+    rotation:
+      r: -2.98251396
+      p: -1.37810867
+      y: -1.76286923
+  frame_id: pylon_camera
+livox_lidar_link:
+  transform:
+    translation:
+      x: 10.15
+      y: 0.23
+      z: 0.05
+    rotation:
+      r: 0
+      p: 0
+      y: 0
+  frame_id: livox_frame
+os_lidar_link:
+  transform:
+    translation:
+      x: -0.888888
+      y: 0.5107885
+      z: -0.4889736
+    rotation:
+      r: 1.269
+      p: -0.028
+      y: 1.786
+  frame_id: os_lidar
+front_radar_link:
+  transform:
+    translation:
+      x: -0.5107885
+      y: 0.5107885
+      z: -0.4889736
+    rotation:
+      r: 1.269
+      p: -0.028
+      y: 1.786
+  frame_id: radar_link
+left_radar_link:
+  transform:
+    translation:
+      x: -0.5107885
+      y: 0.5107885
+      z: -0.4889736
+    rotation:
+      r: 1.269
+      p: -0.028
+      y: 1.786
+  frame_id: radar_link
+right_radar_link:
+  transform:
+    translation:
+      x: -0.5107885
+      y: 0.5107885
+      z: -0.4889736
+    rotation:
+      r: 1.269
+      p: -0.028
+      y: 1.786
+  frame_id: radar_link
+imu_link:
+  transform:
+    translation:
+      x: -0.5107885
+      y: 0.5107885
+      z: -0.4889736
+    rotation:
+      r: 1.269
+      p: -0.028
+      y: 1.786
+  frame_id: imu_link

@@ -1,0 +1,78 @@
+DAGstreaming:
+  perception:
+    camera:
+      node: CameraProcessWorkerNode
+      device_id: basler_ac1920_8mm
+      input: pylon_driver
+      output: camera_obstacles
+      component:
+        detector:
+          name: yolov5
+          model: model/yolov5-mine.trt
+          config: conf/dllib/yolov5-urban.txt
+        tracker:
+          name: deepsorts
+          model: model/deepsorts-mine.trt
+          config: conf/dllib/deepsorts-urban.txt
+    lidar:
+      node: LidarProcessWorkerNode
+      device_id: horizon_15
+      input: livox_driver
+      output: lidar_obstacles
+      component:
+        detector:
+          name: pointpillars
+          model: model/pointpillars-mine.trt
+          config: conf/dllib/yolov5-mine.txt
+        tracker:
+          name: none
+          model: none
+          config:
+    radar:
+      node: RadarProcessWorkerNode
+      device_id: delphi_esr
+      input: delphi_driver
+      output: radar_obstacles
+      config: node
+    fusion:
+      node: FusionProcessWorkerNode
+      input: lidar_obstacles
+      output: perception_obstacles
+      mode:
+        component1: lidar
+        component2: camera
+        component3: radar
+        component4: v2x
+      config:
+  prediction:
+    straight:
+      predictor:
+        name: pointpillars
+        model: model/pointpillars-mine.trt
+        config: conf/dllib/yolov5-mine.txt
+      evaluator:
+        name: pointpillars
+        model: model/pointpillars-mine.trt
+        config: conf/dllib/yolov5-mine.txt
+    intersection:
+      predictor:
+        name: pointpillars
+        model: model/pointpillars-mine.trt
+        config: conf/dllib/yolov5-mine.txt
+      evaluator:
+        name: pointpillars
+        model: model/pointpillars-mine.trt
+        config: conf/dllib/yolov5-mine.txt
+  mapping:
+    semantic:
+      name: pointpillars
+      model: model/pointpillars-mine.trt
+      config: conf/dllib/yolov5-mine.txt
+Calibration:
+  extrinsics: conf/calibration/extrinsics/truck_urdf.yaml
+  instrinsics: conf/calibration/extrinsics/camera.yaml
+
+
+
+
+
